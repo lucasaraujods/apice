@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÁPICE — Logo Explorations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&family=Raleway:wght@200;300;400&family=Montserrat:wght@200;300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0B0B0D; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 60px 24px; gap: 0; font-family: 'Inter', sans-serif; }
+    .grid { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 780px; }
+    .card { background: #0B0B0D; border-bottom: 1px solid #1e1e22; padding: 72px 60px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .card:last-child { border-bottom: none; }
+    .label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #3a3a42; margin-top: 8px; }
+    .on-light { background: #F4F2EE; }
+    .on-light .label { color: #8a8a92; }
+  </style>
+</head>
+<body>
+  <div class="grid">
+
+    <!-- VARIAÇÃO 1: Círculo com silhueta humana + serifado -->
+    <div class="card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 90" fill="none" style="width:100%;max-width:420px">
+        <defs>
+          <style>
+            @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&amp;family=Inter:wght@300;400&amp;display=swap');
+          </style>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00D67A"/>
+            <stop offset="100%" stop-color="#3DEDA4"/>
+          </linearGradient>
+        </defs>
+        <!-- Círculo -->
+        <circle cx="45" cy="45" r="36" stroke="url(#g1)" stroke-width="1.2" fill="none"/>
+        <!-- Silhueta humana simplificada: cabeça + corpo em posição de movimento/performance -->
+        <!-- Cabeça -->
+        <circle cx="45" cy="25" r="6.5" fill="none" stroke="url(#g1)" stroke-width="1.2"/>
+        <!-- Corpo — figura em postura de pé, braços levemente abertos -->
+        <line x1="45" y1="31.5" x2="45" y2="52" stroke="url(#g1)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Braço esquerdo -->
+        <line x1="45" y1="36" x2="36" y2="44" stroke="url(#g1)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Braço direito -->
+        <line x1="45" y1="36" x2="54" y2="44" stroke="url(#g1)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Perna esquerda -->
+        <line x1="45" y1="52" x2="36" y2="60" stroke="url(#g1)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Perna direita -->
+        <line x1="45" y1="52" x2="54" y2="60" stroke="url(#g1)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Separador -->
+        <line x1="98" y1="18" x2="98" y2="72" stroke="#2a2a32" stroke-width="1"/>
+        <!-- Wordmark -->
+        <text x="118" y="52" font-family="'Raleway','Montserrat',sans-serif" font-weight="300" font-size="26" letter-spacing="14" fill="#F4F4F6">ÁPICE</text>
+        <!-- Tagline -->
+        <text x="119" y="66" font-family="'Inter',sans-serif" font-weight="400" font-size="7.5" letter-spacing="5" fill="#00D67A">CORPO · MÉTODO · RESULTADO</text>
+      </svg>
+      <span class="label">Variação 1 — Círculo · Silhueta · Serifado leve</span>
+    </div>
+
+    <!-- VARIAÇÃO 2: Círculo com figura em movimento dinâmico -->
+    <div class="card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 90" fill="none" style="width:100%;max-width:420px">
+        <defs>
+          <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00D67A"/>
+            <stop offset="100%" stop-color="#3DEDA4"/>
+          </linearGradient>
+          <linearGradient id="g2t" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#F4F4F6"/>
+            <stop offset="100%" stop-color="#B5B5BC"/>
+          </linearGradient>
+        </defs>
+        <!-- Círculo duplo -->
+        <circle cx="45" cy="45" r="36" stroke="#1e1e26" stroke-width="8" fill="none"/>
+        <circle cx="45" cy="45" r="36" stroke="url(#g2)" stroke-width="1" fill="none"/>
+        <!-- Figura em postura atlética: corrida / agachamento -->
+        <!-- Cabeça -->
+        <circle cx="48" cy="22" r="6" fill="none" stroke="url(#g2)" stroke-width="1.2"/>
+        <!-- Tronco inclinado -->
+        <line x1="48" y1="28" x2="42" y2="48" stroke="url(#g2)" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Braço à frente -->
+        <line x1="46" y1="34" x2="57" y2="42" stroke="url(#g2)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Braço atrás -->
+        <line x1="46" y1="34" x2="35" y2="28" stroke="url(#g2)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Perna à frente (estendida) -->
+        <line x1="42" y1="48" x2="54" y2="62" stroke="url(#g2)" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Perna atrás (dobrada) -->
+        <line x1="42" y1="48" x2="33" y2="58" stroke="url(#g2)" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="33" y1="58" x2="36" y2="66" stroke="url(#g2)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Separador -->
+        <line x1="98" y1="18" x2="98" y2="72" stroke="#2a2a32" stroke-width="1"/>
+        <!-- Wordmark -->
+        <text x="118" y="50" font-family="'Cormorant Garamond',Georgia,serif" font-weight="500" font-size="34" letter-spacing="12" fill="url(#g2t)">ÁPICE</text>
+        <!-- Tagline -->
+        <text x="119" y="66" font-family="'Inter',sans-serif" font-weight="300" font-size="7.5" letter-spacing="5.5" fill="#3DEDA4">ECOSSISTEMA DE PERFORMANCE</text>
+      </svg>
+      <span class="label">Variação 2 — Atleta em movimento · Gradiente no wordmark</span>
+    </div>
+
+    <!-- VARIAÇÃO 3: Monograma A dentro de círculo + Playfair Display -->
+    <div class="card">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 90" fill="none" style="width:100%;max-width:420px">
+        <defs>
+          <linearGradient id="g3" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#00A862"/>
+            <stop offset="100%" stop-color="#3DEDA4"/>
+          </linearGradient>
+        </defs>
+        <!-- Círculo fino -->
+        <circle cx="45" cy="45" r="34" stroke="url(#g3)" stroke-width="1" fill="none"/>
+        <!-- Silhueta humana premium: figura ereta, postura de poder -->
+        <!-- Cabeça -->
+        <circle cx="45" cy="22" r="6.5" fill="none" stroke="url(#g3)" stroke-width="1.1"/>
+        <!-- Pescoço + tronco -->
+        <line x1="45" y1="28.5" x2="45" y2="50" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Ombros -->
+        <line x1="33" y1="36" x2="57" y2="36" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Braço esquerdo baixo -->
+        <line x1="33" y1="36" x2="31" y2="50" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Braço direito baixo -->
+        <line x1="57" y1="36" x2="59" y2="50" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Quadril -->
+        <line x1="38" y1="50" x2="52" y2="50" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Perna esquerda -->
+        <line x1="38" y1="50" x2="35" y2="66" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Perna direita -->
+        <line x1="52" y1="50" x2="55" y2="66" stroke="url(#g3)" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Separador elegante -->
+        <line x1="95" y1="20" x2="95" y2="70" stroke="#252530" stroke-width="1"/>
+        <!-- Wordmark Playfair -->
+        <text x="113" y="53" font-family="'Playfair Display',Georgia,serif" font-weight="400" font-size="36" letter-spacing="8" fill="#F4F4F6">ÁPICE</text>
+        <!-- Tagline minimalista -->
+        <text x="114" y="68" font-family="'Inter',sans-serif" font-weight="300" font-size="7" letter-spacing="6" fill="#3DEDA4">PERFORMANCE · MÉTODO · VIDA</text>
+      </svg>
+      <span class="label">Variação 3 — Postura de poder · Playfair Display · Tagline tripla</span>
+    </div>
+
+    <!-- VARIAÇÃO 4: Versão fundo claro -->
+    <div class="card on-light">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 90" fill="none" style="width:100%;max-width:420px">
+        <defs>
+          <linearGradient id="g4" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00A862"/>
+            <stop offset="100%" stop-color="#00D67A"/>
+          </linearGradient>
+        </defs>
+        <circle cx="45" cy="45" r="34" stroke="url(#g4)" stroke-width="1.2" fill="none"/>
+        <circle cx="45" cy="22" r="6.5" fill="none" stroke="url(#g4)" stroke-width="1.2"/>
+        <line x1="45" y1="28.5" x2="45" y2="50" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="33" y1="36" x2="57" y2="36" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="33" y1="36" x2="31" y2="50" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="57" y1="36" x2="59" y2="50" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="38" y1="50" x2="52" y2="50" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="38" y1="50" x2="35" y2="66" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="52" y1="50" x2="55" y2="66" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="95" y1="20" x2="95" y2="70" stroke="#d0d0d8" stroke-width="1"/>
+        <text x="113" y="53" font-family="'Playfair Display',Georgia,serif" font-weight="400" font-size="36" letter-spacing="8" fill="#0B0B0D">ÁPICE</text>
+        <text x="114" y="68" font-family="'Inter',sans-serif" font-weight="400" font-size="7" letter-spacing="6" fill="#00A862">PERFORMANCE · MÉTODO · VIDA</text>
+      </svg>
+      <span class="label">Variação 3 — Versão fundo claro</span>
+    </div>
+
+  </div>
+</body>
+</html>

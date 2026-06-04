@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ápice — Ecossistema Premium de Performance · Brasília DF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Montserrat:wght@200;300;400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --lm-black:#0B0B0D; --lm-charcoal:#161619; --lm-graphite:#23232A;
+      --lm-stone:#3A3A42; --lm-mist:#8E8E96; --lm-pearl:#E8E8EA; --lm-bone:#F4F2EE;
+      --lm-green:#00D67A; --lm-green-deep:#00A862; --lm-green-glow:#3DEDA4; --lm-green-mute:#1A4D38;
+      --lm-alert:#E5614C;
+      --t1:#F4F4F6; --t2:#B5B5BC; --tm:#7A7A82; --tinv:#0B0B0D;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--lm-black); color: var(--t1); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    .rv { opacity: 0; transform: translateY(16px); transition: opacity 400ms ease-out, transform 400ms ease-out; }
+    .rv.vis { opacity: 1; transform: translateY(0); }
+    .rv.d1{transition-delay:80ms} .rv.d2{transition-delay:160ms} .rv.d3{transition-delay:240ms} .rv.d4{transition-delay:320ms}
+    @keyframes cPulse {
+      0%,100%{box-shadow:0 4px 24px rgba(0,214,122,.32),0 0 0 1px rgba(0,214,122,.18)}
+      50%{box-shadow:0 4px 44px rgba(0,214,122,.58),0 0 0 1px rgba(0,214,122,.28)}
+    }
+    .pulse{animation:cPulse 4s ease-in-out infinite}
+    @keyframes waPulse{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,.4)}50%{box-shadow:0 8px 52px rgba(37,211,102,.72)}}
+    .wa-pulse{animation:waPulse 5s ease-in-out infinite}
+    .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:200;padding:12px 20px;background:var(--lm-charcoal);border-top:1px solid var(--lm-graphite);transform:translateY(100%);transition:transform 300ms ease}
+    .sticky-cta.show{transform:translateY(0)}
+    @media(min-width:768px){.sticky-cta,.mob{display:none!important}}
+    @media(max-width:767px){.dsk{display:none!important}}
+    button{font-family:inherit;cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    /* Testimonials: grid on desktop, swipeable carousel on mobile */
+    .depo-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+    @media(max-width:767px){
+      .depo-track{
+        display:flex;
+        gap:16px;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        padding-bottom:14px;
+        scroll-padding:0 20px;
+      }
+      .depo-track::-webkit-scrollbar{height:0}
+      .depo-track>*{
+        flex:0 0 85%;
+        scroll-snap-align:center;
+      }
+    }
+    /* Final CTA matches hero CTA size on mobile */
+    @media(max-width:767px){
+      .cta-final-btn{padding:12px 26px!important;font-size:14px!important;border-radius:999px!important}
+      .cta-final-btn svg{width:14px!important;height:14px!important}
+    }
+    @media(max-width:560px){ .dor-grid{grid-template-columns:1fr!important} }
+    .mod-index-card:hover{ border-color:var(--lm-green)!important; transform:translateY(-2px) }
+    @media(max-width:560px){ .mod-index{grid-template-columns:1fr!important} }
+    @media(max-width:880px){ .svc-bento{grid-template-columns:1fr 1fr!important} }
+    @media(max-width:600px){ .svc-bento{grid-template-columns:1fr!important} .svc-stack{grid-template-rows:auto auto!important} }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    (function(){
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.08});
+      const obs=()=>document.querySelectorAll('.rv:not(.vis)').forEach(el=>io.observe(el));
+      [300,700,1500,3000,6000].forEach(t=>setTimeout(obs,t));
+      window.addEventListener('scroll',()=>{
+        obs();
+        const el=document.querySelector('.sticky-cta');
+        if(el)el.classList.toggle('show',window.scrollY>window.innerHeight*.3);
+      });
+    })();
+  </script>
+  <script type="text/babel" src="lm-components.jsx"></script>
+  <script type="text/babel" src="lm-i18n.jsx"></script>
+  <script type="text/babel" src="apice-form.jsx"></script>
+  <script type="text/babel" src="lm-sections-top.jsx"></script>
+  <script type="text/babel" src="lm-sections-bottom.jsx"></script>
+  <script type="text/babel" src="lm-app.jsx"></script>
+</body>
+</html>

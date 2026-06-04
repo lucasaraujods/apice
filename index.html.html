@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --ink:#1a1a18;--ink-2:#4a4a45;--ink-3:#8a8a82;
+  --line:rgba(26,26,24,0.10);--line-md:rgba(26,26,24,0.16);
+  --bg:#f7f5f0;--card:#ffffff;
+  --green:#1ddc6a;--green-dim:#16b357;--green-bg:rgba(29,220,106,0.08);
+  --accent:#2d4a3e;--accent-light:#e8efe9;
+  --amber:#c4892a;--amber-light:#faf3e3;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+.playbook{max-width:720px;margin:0 auto;padding:0 0 80px;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:0.5px solid var(--line-md);background:var(--bg);position:sticky;top:0;z-index:100;}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;}
+.nav-link{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);cursor:pointer;background:none;border:none;font-family:var(--sans);transition:color 0.2s;padding:0;}
+.nav-link:hover,.nav-link.active{color:var(--ink);}
+.page{display:none;}.page.active{display:block;}
+.cover{min-height:580px;display:flex;flex-direction:column;justify-content:flex-end;padding:64px 40px 56px;background:#080808;position:relative;overflow:hidden;}
+.cover-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(29,220,106,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(29,220,106,0.04) 1px,transparent 1px);background-size:48px 48px;}
+.cover-glow{position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);opacity:0.6;}
+.cover-no{position:absolute;top:40px;right:40px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.15);font-family:var(--sans);}
+.cover-logo-wrap{position:absolute;top:40px;left:40px;}
+.cover-tag{display:inline-block;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);margin-bottom:24px;font-family:var(--sans);opacity:0.7;}
+.cover-h1{font-family:var(--serif);font-size:clamp(48px,9vw,80px);line-height:1.0;color:#fff;font-weight:400;margin-bottom:20px;}
+.cover-h1 em{font-style:italic;color:var(--green);opacity:0.85;}
+.cover-sub{font-size:14px;color:rgba(255,255,255,0.35);max-width:380px;line-height:1.65;margin-bottom:48px;letter-spacing:0.01em;}
+.cover-rule{width:32px;height:1px;background:var(--green);opacity:0.3;margin-bottom:28px;}
+.cover-meta{display:flex;gap:36px;}
+.cover-meta-item{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+.cover-meta-val{display:block;font-size:17px;letter-spacing:0;text-transform:none;color:rgba(255,255,255,0.7);font-family:var(--serif);margin-top:3px;}
+.cover-cta{position:absolute;bottom:56px;right:40px;display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);cursor:pointer;background:none;border:none;font-family:var(--sans);transition:color 0.2s;}
+.cover-cta:hover{color:var(--green);}
+.cover-cta-arrow{width:28px;height:28px;border:0.5px solid rgba(29,220,106,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.section{padding:52px 40px;border-bottom:0.5px solid var(--line);}
+.section:last-child{border-bottom:none;}
+.sec-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px;}
+.sec-num{color:var(--line-md);margin-right:10px;}
+.sec-title{font-family:var(--serif);font-size:30px;font-weight:400;line-height:1.2;margin-bottom:14px;}
+.sec-intro{font-size:14px;color:var(--ink-2);max-width:520px;line-height:1.75;margin-bottom:36px;}
+.level-tabs{display:flex;gap:4px;margin-bottom:28px;background:var(--line);padding:4px;border-radius:10px;}
+.level-tab{flex:1;padding:9px;text-align:center;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;border-radius:8px;cursor:pointer;background:transparent;border:none;color:var(--ink-3);font-family:var(--sans);transition:all 0.2s;}
+.level-tab.active{background:var(--card);color:var(--ink);}
+.volume-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-bg);color:var(--green-dim);font-size:11px;padding:4px 12px;border-radius:20px;margin-bottom:20px;border:0.5px solid rgba(29,220,106,0.2);}
+.session-card{background:var(--card);border:0.5px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:12px;}
+.warmup-header{background:var(--green-bg);border-bottom:0.5px solid rgba(29,220,106,0.15);padding:12px 18px;display:flex;align-items:center;gap:8px;}
+.warmup-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-dim);font-weight:500;}
+.warmup-list{padding:10px 18px 14px;border-bottom:0.5px solid var(--line);}
+.warmup-list li{font-size:12px;color:var(--ink-2);padding:4px 0;list-style:none;display:flex;justify-content:space-between;}
+.warmup-list li span{color:var(--ink-3);font-size:11px;}
+.ex-header{padding:12px 18px 4px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);}
+.exercise-list{list-style:none;padding:0 18px 14px;}
+.exercise-list li{font-size:12px;color:var(--ink-2);padding:5px 0;border-bottom:0.5px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;}
+.exercise-list li:last-child{border-bottom:none;}
+.ex-sets{color:var(--ink-3);font-size:11px;white-space:nowrap;margin-left:8px;}
+.ex-alt{font-size:11px;color:var(--ink-3);margin-top:2px;}
+.split-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:28px;}
+.split-day{background:var(--card);border:0.5px solid var(--line);border-radius:12px;overflow:hidden;}
+.split-day-header{padding:14px 16px 0;}
+.split-day-label{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px;}
+.split-day-name{font-family:var(--serif);font-size:16px;margin-bottom:10px;}
+.split-warmup{background:var(--green-bg);border-top:0.5px solid rgba(29,220,106,0.12);border-bottom:0.5px solid rgba(29,220,106,0.12);padding:8px 16px;}
+.split-warmup-label{font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-dim);margin-bottom:4px;}
+.split-warmup ul{list-style:none;}
+.split-warmup li{font-size:11px;color:var(--ink-2);padding:2px 0;}
+.split-exercises{padding:10px 16px 14px;list-style:none;}
+.split-exercises li{font-size:12px;color:var(--ink-2);padding:4px 0;border-bottom:0.5px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;}
+.split-exercises li:last-child{border-bottom:none;}
+.split-ex-left{display:flex;flex-direction:column;}
+.split-ex-alt{font-size:10px;color:var(--ink-3);margin-top:1px;}
+.prog-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:22px;table-layout:fixed;}
+.prog-table th{text-align:left;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);padding:0 8px 10px 0;font-weight:400;}
+.prog-table td{padding:11px 8px 11px 0;border-top:0.5px solid var(--line);color:var(--ink-2);vertical-align:top;}
+.prog-table td:first-child{color:var(--ink);font-weight:500;}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:0.5px solid var(--line);border-radius:12px;overflow:hidden;}
+.phil-card{background:var(--card);padding:24px 20px;}
+.phil-icon{font-size:18px;margin-bottom:14px;color:var(--ink-3);}
+.phil-title{font-size:13px;font-weight:500;letter-spacing:0.03em;margin-bottom:7px;}
+.phil-text{font-size:13px;color:var(--ink-2);line-height:1.65;}
+.steps{display:flex;flex-direction:column;border:0.5px solid var(--line);border-radius:12px;overflow:hidden;}
+.step{display:flex;align-items:flex-start;gap:18px;padding:22px;border-bottom:0.5px solid var(--line);background:var(--card);}
+.step:last-child{border-bottom:none;}
+.step-n{font-family:var(--serif);font-size:26px;color:var(--line-md);line-height:1;min-width:28px;}
+.step-title{font-size:13px;font-weight:500;margin-bottom:3px;}
+.step-text{font-size:13px;color:var(--ink-2);line-height:1.6;}
+.rpe-bar{background:var(--card);border:0.5px solid var(--line);border-radius:12px;padding:24px 20px;margin-bottom:14px;}
+.rpe-title{font-size:13px;font-weight:500;margin-bottom:14px;}
+.rpe-track{display:flex;gap:3px;margin-bottom:10px;}
+.rpe-seg{height:6px;flex:1;border-radius:2px;background:var(--line);}
+.rpe-seg.filled{background:var(--accent);}
+.rpe-seg.target{background:var(--green-dim);}
+.rpe-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);}
+.overload-steps{display:flex;flex-direction:column;border:0.5px solid var(--line);border-radius:12px;overflow:hidden;margin-top:22px;}
+.ol-step{display:flex;align-items:center;gap:14px;padding:15px 18px;background:var(--card);border-bottom:0.5px solid var(--line);}
+.ol-step:last-child{border-bottom:none;}
+.ol-arrow{color:var(--green-dim);font-size:15px;}
+.ol-label{font-size:13px;font-weight:500;}
+.ol-desc{font-size:12px;color:var(--ink-3);margin-top:2px;}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.rec-card{background:var(--card);border:0.5px solid var(--line);border-radius:12px;padding:22px;}
+.rec-num{font-family:var(--serif);font-size:38px;color:var(--ink);line-height:1;margin-bottom:3px;}
+.rec-unit{font-size:11px;color:var(--ink-3);letter-spacing:0.04em;margin-bottom:10px;}
+.rec-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-2);margin-bottom:7px;}
+.rec-note{font-size:12px;color:var(--ink-3);line-height:1.55;}
+.mistake-list{display:flex;flex-direction:column;border:0.5px solid var(--line);border-radius:12px;overflow:hidden;}
+.mistake{display:flex;gap:18px;padding:20px 22px;background:var(--card);border-bottom:0.5px solid var(--line);align-items:flex-start;}
+.mistake:last-child{border-bottom:none;}
+.mistake-x{width:20px;height:20px;border-radius:50%;background:var(--amber-light);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px;}
+.mistake-title{font-size:13px;font-weight:500;margin-bottom:3px;}
+.mistake-text{font-size:12px;color:var(--ink-2);line-height:1.6;}
+.final{padding:72px 40px;background:#080808;color:#fff;}
+.final-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:28px;}
+.final-quote{font-family:var(--serif);font-size:clamp(24px,4.5vw,38px);line-height:1.25;color:#fff;font-weight:400;max-width:520px;margin-bottom:36px;}
+.final-quote em{font-style:italic;color:var(--green);opacity:0.8;}
+.final-rule{width:32px;height:0.5px;background:var(--green);opacity:0.3;margin-bottom:28px;}
+.final-body{font-size:14px;color:rgba(255,255,255,0.4);max-width:420px;line-height:1.75;}
+.final-checklist{margin-top:36px;display:flex;flex-direction:column;border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;overflow:hidden;}
+.final-check{display:flex;align-items:center;gap:14px;padding:15px 18px;border-bottom:0.5px solid rgba(255,255,255,0.06);}
+.final-check:last-child{border-bottom:none;}
+.check-box{width:18px;height:18px;border:0.5px solid rgba(255,255,255,0.18);border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;}
+.check-box.checked{background:var(--green-dim);border-color:var(--green-dim);}
+.check-box.checked::after{content:'';width:8px;height:5px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translateY(-1px);display:block;}
+.check-text{font-size:13px;color:rgba(255,255,255,0.45);transition:color 0.15s;}
+.check-text.checked{color:rgba(255,255,255,0.75);}
+.consult-card{margin-top:40px;background:rgba(29,220,106,0.07);border:0.5px solid rgba(29,220,106,0.2);border-radius:14px;padding:32px 28px;}
+.consult-tag{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);opacity:0.7;margin-bottom:16px;}
+.consult-title{font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:12px;line-height:1.3;}
+.consult-body{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:420px;margin-bottom:24px;}
+.consult-disclaimer{font-size:11px;color:rgba(255,255,255,0.22);line-height:1.6;margin-bottom:24px;border-top:0.5px solid rgba(255,255,255,0.06);padding-top:16px;}
+.consult-cta{display:inline-flex;align-items:center;gap:8px;background:var(--green-dim);color:#080808;font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:12px 20px;border-radius:8px;border:none;cursor:pointer;font-family:var(--sans);transition:opacity 0.2s;}
+.consult-cta:hover{opacity:0.85;}
+.tracker{background:var(--card);border:0.5px solid var(--line);border-radius:12px;padding:24px 20px;margin-top:28px;}
+.tracker-title{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px;}
+.week-grid{display:flex;gap:6px;}
+.week-day{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;}
+.week-day-label{font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.08em;}
+.week-dot{width:32px;height:32px;border-radius:50%;border:0.5px solid var(--line);cursor:pointer;transition:all 0.15s;background:var(--bg);}
+.week-dot.done{background:var(--green-dim);border-color:var(--green-dim);}
+.week-dot.rest-day{background:var(--line);border-color:var(--line);cursor:default;}
+.divider{height:0.5px;background:var(--line);margin:28px 0;}
+.info-block{background:var(--card);border-left:2px solid var(--green-dim);padding:14px 18px;border-radius:0 8px 8px 0;font-size:13px;color:var(--ink-2);line-height:1.65;}
+</style>
+</head>
+<body>
+<div class="playbook">
+
+<nav class="nav">
+  <div>
+    <svg width="110" height="28" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="28" cy="28" r="24" stroke="#1ddc6a" stroke-width="2" fill="none"/>
+      <circle cx="28" cy="16" r="5" stroke="#1ddc6a" stroke-width="2" fill="none"/>
+      <polyline points="20,38 28,28 36,38" stroke="#1ddc6a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="20,44 28,34 36,44" stroke="#1ddc6a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="62" y1="6" x2="62" y2="50" stroke="rgba(26,26,24,0.2)" stroke-width="1"/>
+      <text x="74" y="36" font-family="'DM Sans',sans-serif" font-size="26" font-weight="300" letter-spacing="8" fill="#1a1a18">ÁPICE</text>
+    </svg>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('cover',this)">Cover</button>
+    <button class="nav-link" onclick="showPage('training',this)">Training</button>
+    <button class="nav-link" onclick="showPage('philosophy',this)">Philosophy</button>
+    <button class="nav-link" onclick="showPage('progression',this)">Progression</button>
+    <button class="nav-link" onclick="showPage('recovery',this)">Recovery</button>
+    <button class="nav-link" onclick="showPage('mistakes',this)">Mistakes</button>
+    <button class="nav-link" onclick="showPage('final',this)">Closing</button>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="page active" id="page-cover">
+<div class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-glow"></div>
+  <div class="cover-logo-wrap">
+    <svg width="120" height="34" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="28" cy="28" r="24" stroke="#1ddc6a" stroke-width="2" fill="none"/>
+      <circle cx="28" cy="16" r="5" stroke="#1ddc6a" stroke-width="2" fill="none"/>
+      <polyline points="20,38 28,28 36,38" stroke="#1ddc6a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="20,44 28,34 36,44" stroke="#1ddc6a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="62" y1="6" x2="62" y2="50" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <text x="74" y="36" font-family="'DM Sans',sans-serif" font-size="26" font-weight="300" letter-spacing="8" fill="rgba(255,255,255,0.7)">ÁPICE</text>
+    </svg>
+  </div>
+  <span class="cover-no">001</span>
+  <span class="cover-tag">A minimalist training system</span>
+  <h1 class="cover-h1">Project<br><em>Apex</em></h1>
+  <p class="cover-sub">A science-based home training system built for people who value consistency above everything else.</p>
+  <div class="cover-rule"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">Level<span class="cover-meta-val">All</span></div>
+    <div class="cover-meta-item">Equipment<span class="cover-meta-val">Minimal</span></div>
+    <div class="cover-meta-item">Focus<span class="cover-meta-val">Aesthetics + Health</span></div>
+  </div>
+  <button class="cover-cta" onclick="showPage('training',document.querySelectorAll('.nav-link')[1])">
+    Begin
+    <span class="cover-cta-arrow"><i class="ti ti-arrow-right" style="font-size:13px;color:rgba(29,220,106,0.6);" aria-hidden="true"></i></span>
+  </button>
+</div>
+<div class="section">
+  <div class="sec-label">About this playbook</div>
+  <p class="sec-intro" style="margin-bottom:0;">Project Apex is a straight-to-the-point training system. No unnecessary complexity — just the principles that actually work, applied with consistency. Use the navigation above to move through each section.</p>
+</div>
+</div>
+
+<!-- TRAINING -->
+<div class="page" id="page-training">
+<div class="section">
+  <div class="sec-label"><span class="sec-num">01</span>Training system</div>
+  <h2 class="sec-title">Built for home.<br>Designed to progress.</h2>
+  <p class="sec-intro">Select your level below. Beginner runs a 3-day full body split. Intermediate and advanced run a 4-day push/pull/legs structure. Every session includes a warmup.</p>
+  <div class="level-tabs">
+    <button class="level-tab active" onclick="setLevel('beginner',this)">Beginner</button>
+    <button class="level-tab" onclick="setLevel('intermediate',this)">Intermediate</button>
+    <button class="level-tab" onclick="setLevel('advanced',this)">Advanced</button>
+  </div>
+  <div class="volume-badge">
+    <i class="ti ti-info-circle" aria-hidden="true"></i>
+    <span id="vol-text">3 days/week · Full body · 2–3 sets · Focus on form</span>
+  </div>
+  <div id="training-content"></div>
+  <div class="divider"></div>
+  <div class="sec-label">Exercise alternatives</div>
+  <table class="prog-table">
+    <thead><tr><th>If you can't do</th><th>Use this instead</th><th>Next step</th></tr></thead>
+    <tbody>
+      <tr><td>Pull-up</td><td>Inverted row (table)</td><td>Assisted pull-up → full</td></tr>
+      <tr><td>Pike push-up</td><td>Elevated push-up</td><td>Handstand push-up</td></tr>
+      <tr><td>Pistol squat</td><td>Assisted squat (door)</td><td>Slow eccentric → full</td></tr>
+      <tr><td>Nordic curl</td><td>Slow eccentric only</td><td>Full concentric</td></tr>
+      <tr><td>Dragon flag</td><td>Tuck hold eccentric</td><td>Full leg extension</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="section" style="padding-top:0;">
+  <div class="sec-label">Weekly tracker</div>
+  <div class="tracker">
+    <div class="tracker-title">This week's sessions</div>
+    <div class="week-grid" id="week-tracker"></div>
+  </div>
+</div>
+</div>
+
+<!-- PHILOSOPHY -->
+<div class="page" id="page-philosophy">
+<div class="section">
+  <div class="sec-label"><span class="sec-num">02</span>Philosophy</div>
+  <h2 class="sec-title">The principles<br>that actually matter.</h2>
+  <p class="sec-intro">Most people fail not from lack of information, but from overcomplicating the basics. Five ideas — if internalized — will carry you further than any program ever could.</p>
+  <div class="phil-grid">
+    <div class="phil-card"><div class="phil-icon"><i class="ti ti-refresh" aria-hidden="true"></i></div><div class="phil-title">Consistency</div><p class="phil-text">An average program done consistently beats an optimal one done sporadically. Showing up is the skill. Build training into your identity, not just your schedule.</p></div>
+    <div class="phil-card"><div class="phil-icon"><i class="ti ti-trending-up" aria-hidden="true"></i></div><div class="phil-title">Progressive overload</div><p class="phil-text">Your body only adapts when given a reason to. Over time you must do more — more reps, harder variations, or more load. This is the engine of all progress.</p></div>
+    <div class="phil-card"><div class="phil-icon"><i class="ti ti-moon" aria-hidden="true"></i></div><div class="phil-title">Recovery</div><p class="phil-text">Growth happens outside the session. Sleep, nutrition, and rest are not luxuries — they are the mechanism through which training actually works.</p></div>
+    <div class="phil-card"><div class="phil-icon"><i class="ti ti-minus" aria-hidden="true"></i></div><div class="phil-title">Simplicity</div><p class="phil-text">Fewer, better movements done with intention outperform long, scattered routines. Complexity is often a form of procrastination. Keep it simple, make it sustainable.</p></div>
+  </div>
+  <div class="divider"></div>
+  <div class="info-block"><strong>On expectations.</strong> Noticeable physique changes take 3–6 months of consistent training. Significant transformation takes 1–3 years. Anyone promising otherwise is selling something.</div>
+</div>
+<div class="section">
+  <div class="sec-label"><span class="sec-num">03</span>How to use this playbook</div>
+  <h2 class="sec-title">Simple by design.</h2>
+  <p class="sec-intro">This system is meant to be followed, not studied. Four steps to get started.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div><div class="step-title">Pick your level</div><p class="step-text">Go to the Training section and select Beginner, Intermediate, or Advanced. When in doubt, start lower — form and habit matter more than volume.</p></div></div>
+    <div class="step"><div class="step-n">2</div><div><div class="step-title">Follow the split</div><p class="step-text">Train on the designated days. Do not skip rest days — they are part of the program, not a failure of discipline.</p></div></div>
+    <div class="step"><div class="step-n">3</div><div><div class="step-title">Apply progression</div><p class="step-text">Each week, aim to do slightly more than the last. One extra rep, cleaner form, or a harder variation counts as progress.</p></div></div>
+    <div class="step"><div class="step-n">4</div><div><div class="step-title">Run 8-week blocks</div><p class="step-text">Run this program for 8 weeks before making any changes. Consistency within a structure is how adaptation occurs. Resist the urge to switch programs.</p></div></div>
+  </div>
+</div>
+</div>
+
+<!-- PROGRESSION -->
+<div class="page" id="page-progression">
+<div class="section">
+  <div class="sec-label"><span class="sec-num">04</span>Progression principles</div>
+  <h2 class="sec-title">How to keep<br>making progress.</h2>
+  <p class="sec-intro">Understanding effort and overload removes the guesswork. These two concepts are all you need to structure training intelligently.</p>
+  <div class="sec-label" style="margin-bottom:14px;">Reps in Reserve (RIR)</div>
+  <div class="rpe-bar">
+    <div class="rpe-title">How hard should you train?</div>
+    <div class="rpe-track">
+      <div class="rpe-seg filled"></div><div class="rpe-seg filled"></div><div class="rpe-seg filled"></div><div class="rpe-seg filled"></div><div class="rpe-seg filled"></div><div class="rpe-seg filled"></div><div class="rpe-seg filled"></div><div class="rpe-seg filled"></div>
+      <div class="rpe-seg target"></div><div class="rpe-seg target"></div>
+    </div>
+    <div class="rpe-labels"><span>Easy</span><span style="color:var(--accent);">Most sets here →</span><span style="color:var(--green-dim);">← 1–2 RIR</span><span>Failure</span></div>
+  </div>
+  <p style="font-size:13px;color:var(--ink-2);line-height:1.7;max-width:480px;">Train most sets with 1–2 reps left in the tank. Getting close to failure is necessary for growth — but training to failure every set increases injury risk and recovery demand.</p>
+  <div class="divider"></div>
+  <div class="sec-label" style="margin-bottom:14px;">Progressive overload in practice</div>
+  <div class="overload-steps">
+    <div class="ol-step"><i class="ti ti-arrow-right ol-arrow" aria-hidden="true"></i><div><div class="ol-label">Add reps first</div><p class="ol-desc">If prescribed 3×8–12, work up to 3×12 before increasing difficulty.</p></div></div>
+    <div class="ol-step"><i class="ti ti-arrow-right ol-arrow" aria-hidden="true"></i><div><div class="ol-label">Then add load or difficulty</div><p class="ol-desc">Use a harder variation, add a resistance band, or slow the eccentric tempo.</p></div></div>
+    <div class="ol-step"><i class="ti ti-arrow-right ol-arrow" aria-hidden="true"></i><div><div class="ol-label">Track what you do</div><p class="ol-desc">You cannot progress what you don't measure. A simple notes app is enough.</p></div></div>
+    <div class="ol-step"><i class="ti ti-arrow-right ol-arrow" aria-hidden="true"></i><div><div class="ol-label">Run 8-week blocks</div><p class="ol-desc">Switching programs early resets the adaptation cycle. Give it time.</p></div></div>
+  </div>
+  <div class="divider"></div>
+  <table class="prog-table">
+    <thead><tr><th>Timeline</th><th>Realistic expectation</th><th>Key driver</th></tr></thead>
+    <tbody>
+      <tr><td>0–4 weeks</td><td>Better movement, more energy, neural adaptation</td><td>Consistency</td></tr>
+      <tr><td>1–3 months</td><td>Noticeable strength gains, early definition</td><td>Progressive overload</td></tr>
+      <tr><td>3–6 months</td><td>Clear physique changes, measurable muscle gain</td><td>Nutrition + volume</td></tr>
+      <tr><td>1–2 years</td><td>Significant transformation, sustainable lifestyle</td><td>Patience + identity</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+<!-- RECOVERY -->
+<div class="page" id="page-recovery">
+<div class="section">
+  <div class="sec-label"><span class="sec-num">05</span>Recovery &amp; lifestyle</div>
+  <h2 class="sec-title">The part most<br>people ignore.</h2>
+  <p class="sec-intro">Training is the stimulus. Recovery is the adaptation. Get these four things right and your results will compound faster than any advanced program could.</p>
+  <div class="rec-grid">
+    <div class="rec-card"><div class="rec-label">Sleep</div><div class="rec-num">7–9</div><div class="rec-unit">hours per night</div><p class="rec-note">Most muscle protein synthesis occurs during sleep. Short-changing rest limits growth and impairs decision-making around food and training.</p></div>
+    <div class="rec-card"><div class="rec-label">Daily steps</div><div class="rec-num">7k</div><div class="rec-unit">steps minimum</div><p class="rec-note">Non-exercise activity (NEAT) has a significant impact on body composition. Walking burns calories without increasing recovery demand.</p></div>
+    <div class="rec-card"><div class="rec-label">Protein</div><div class="rec-num">1.6–2.2</div><div class="rec-unit">g per kg bodyweight</div><p class="rec-note">Protein is the limiting factor for muscle growth. Distribute across 3–4 meals. Sources: eggs, chicken, fish, legumes, dairy, protein powder if needed.</p></div>
+    <div class="rec-card"><div class="rec-label">Stress</div><div class="rec-num">Low</div><div class="rec-unit">chronically</div><p class="rec-note">Elevated cortisol chronically inhibits muscle protein synthesis. Manage stress as seriously as training. Breathwork, walks, and sleep are practical tools.</p></div>
+  </div>
+  <div class="divider"></div>
+  <div class="info-block"><strong>On nutrition.</strong> You don't need to track calories to see results. Prioritize protein, eat whole foods most of the time, and avoid extreme restriction. Consistency with a moderate approach outperforms perfection with an unsustainable one.</div>
+</div>
+</div>
+
+<!-- MISTAKES -->
+<div class="page" id="page-mistakes">
+<div class="section">
+  <div class="sec-label"><span class="sec-num">06</span>Common mistakes</div>
+  <h2 class="sec-title">What holds<br>most people back.</h2>
+  <p class="sec-intro">These are not moral failures. They are predictable patterns. Recognizing them is enough to avoid most of them.</p>
+  <div class="mistake-list">
+    <div class="mistake"><div class="mistake-x"><i class="ti ti-x" style="font-size:10px;" aria-hidden="true"></i></div><div><div class="mistake-title">Program hopping</div><p class="mistake-text">Switching programs every few weeks prevents the adaptation cycle from completing. Results require at least 8 weeks of consistent effort before any judgment.</p></div></div>
+    <div class="mistake"><div class="mistake-x"><i class="ti ti-x" style="font-size:10px;" aria-hidden="true"></i></div><div><div class="mistake-title">Training without tracking</div><p class="mistake-text">Without a log, progressive overload is guesswork. Track sets, reps, and variations. A notes app is sufficient.</p></div></div>
+    <div class="mistake"><div class="mistake-x"><i class="ti ti-x" style="font-size:10px;" aria-hidden="true"></i></div><div><div class="mistake-title">Ignoring protein intake</div><p class="mistake-text">Training without adequate protein is like building without materials. Most people who "can't gain muscle" are simply under-eating protein.</p></div></div>
+    <div class="mistake"><div class="mistake-x"><i class="ti ti-x" style="font-size:10px;" aria-hidden="true"></i></div><div><div class="mistake-title">Optimizing before building a habit</div><p class="mistake-text">Advanced timing, periodization, and supplementation are irrelevant if you can't train consistently for 12 weeks. Build the habit first.</p></div></div>
+    <div class="mistake"><div class="mistake-x"><i class="ti ti-x" style="font-size:10px;" aria-hidden="true"></i></div><div><div class="mistake-title">Comparing early results to others' late results</div><p class="mistake-text">Most physiques you admire represent 3–5 years of consistent effort, not 3 months. Calibrate your expectations accordingly.</p></div></div>
+    <div class="mistake"><div class="mistake-x"><i class="ti ti-x" style="font-size:10px;" aria-hidden="true"></i></div><div><div class="mistake-title">Treating rest as failure</div><p class="mistake-text">Rest is when adaptation occurs. A scheduled rest day is not laziness — it is part of the program. Overtraining leads to injury and regression.</p></div></div>
+  </div>
+</div>
+</div>
+
+<!-- FINAL -->
+<div class="page" id="page-final">
+<div class="final">
+  <div class="final-label"><span class="sec-num" style="color:rgba(255,255,255,0.12);">07</span>Closing</div>
+  <p class="final-quote">"The goal is not a perfect body.<br><em>It's a consistent one."</em></p>
+  <div class="final-rule"></div>
+  <p class="final-body">Physique change is a slow game. The people who win it are not the most motivated — they are the most consistent. Motivation is a feeling. Systems are structures. Build a structure.</p>
+  <p class="final-body" style="margin-top:14px;">You don't need to train harder. You need to train longer. Start simple. Stay with it. Let time do its work.</p>
+  <div class="final-checklist">
+    <div class="final-check"><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">I've chosen my level and read the full split</span></div>
+    <div class="final-check"><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">I have a place to track my sessions</span></div>
+    <div class="final-check"><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">I'm committed to an 8-week block before changing anything</span></div>
+    <div class="final-check"><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">I understand results happen over months, not weeks</span></div>
+    <div class="final-check"><div class="check-box" onclick="toggleCheck(this)"></div><span class="check-text">I've saved this playbook for regular reference</span></div>
+  </div>
+  <div class="consult-card">
+    <div class="consult-tag">Personalized coaching · Ápice</div>
+    <div class="consult-title">Want a program<br>built for you?</div>
+    <p class="consult-body">This playbook is a solid, science-based starting point — but it is not a substitute for individualized assessment. If you want a protocol built around your specific history, lifestyle, and goals, we're available.</p>
+    <div class="consult-disclaimer">This material is a general guide and does not represent an individualized prescription. For optimized results, we recommend personalized professional coaching.</div>
+  <button class="consult-cta" onclick="window.open('https://www.instagram.com/deoneto0?igsh=MW15bmNjMWN3bXk5aQ%3D%3D&utm_source=qr', '_blank')">
+    <i class="ti ti-brand-instagram" style="font-size:15px;" aria-hidden="true"></i>
+    Contact us via DM
+  </button>
+  </div>
+</div>
+<div class="section" style="text-align:center;padding:40px;">
+  <svg width="80" height="22" viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 12px;">
+    <circle cx="28" cy="28" r="24" stroke="rgba(26,26,24,0.2)" stroke-width="2" fill="none"/>
+    <circle cx="28" cy="16" r="5" stroke="rgba(26,26,24,0.2)" stroke-width="2" fill="none"/>
+    <polyline points="20,38 28,28 36,38" stroke="rgba(26,26,24,0.2)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="20,44 28,34 36,44" stroke="rgba(26,26,24,0.2)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <p style="font-size:11px;color:var(--ink-3);letter-spacing:0.1em;text-transform:uppercase;">Ápice · Body · Method · Result</p>
+</div>
+</div>
+
+</div>
+<script>
+const plans = {
+  beginner: {
+    vol: '3 days/week · Full body · 2–3 sets · Focus on form',
+    tracker: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    trackerRest: [false,false,true,false,false,true,true],
+    days: [
+      {
+        label:'Day A · Mon', name:'Full Body A',
+        warmup:['Jumping jacks — 30s','Hip circles — 10 each side','Shoulder rotations — 10 each side'],
+        exercises:[['Push-up (knees if needed)','2×8'],['Bodyweight squat','2×12'],['Inverted row (table)','2×8'],['Glute bridge','2×12'],['Plank','2×20s']]
+      },
+      {
+        label:'Day B · Wed', name:'Full Body B',
+        warmup:['Mobility squat — 10 reps','Hip flexor lunge — 10 each side','Ankle circles — 10 each side'],
+        exercises:[['Push-up with pause','2×6'],['Reverse lunge','2×10 each'],['Superman hold','2×10'],['Sumo squat','2×12'],['Hollow hold','2×20s']]
+      },
+      {
+        label:'Day C · Fri', name:'Full Body C',
+        warmup:['Side-lying hip abduction — 10 each side','Cat-cow — 10 reps','Spinal rotation (floor) — 10 each'],
+        exercises:[['Pike push-up','2×6'],['Jump squat','2×8'],['Band row (or towel row)','2×10'],['Side plank','2×20s each'],['Calf raise','2×20']]
+      }
+    ]
+  },
+  intermediate: {
+    vol: '4 days/week · Push / Pull / Legs / Upper+Core · 3–4 sets · 2 RIR',
+    tracker: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    trackerRest: [false,false,true,false,false,true,true],
+    days: [
+      {
+        label:'Day 1 · Mon', name:'Push',
+        warmup:['Shoulder rotations — 5 each','Band dislocates — 5 reps','Jumping jacks — 30s'],
+        exercises:[
+          {name:'Feet-elevated push-up',sets:'4×10'},
+          {name:'Pike push-up',sets:'3×10'},
+          {name:'Diamond push-up',sets:'3×10'},
+          {name:'Bench tricep dip (feet elevated)',sets:'3×12'},
+          {name:'External rotation (band)',sets:'2×15'}
+        ]
+      },
+      {
+        label:'Day 2 · Tue', name:'Pull',
+        warmup:['Back extension (floor) — 10 reps','Scapular retractions — 10 reps','Arm circles — 10 each'],
+        exercises:[
+          {name:'Pull-up / inverted row',sets:'4×6'},
+          {name:'High-elbow band row',sets:'3×12'},
+          {name:'Face pull (band)',sets:'3×15'},
+          {name:'Bicep curl (band)',sets:'3×12'},
+          {name:'Scapular pull-up',sets:'2×12'}
+        ]
+      },
+      {
+        label:'Day 3 · Thu', name:'Legs',
+        warmup:['Hip 90/90 stretch — 5 each','Slow bodyweight squat — 10 reps','Ankle circles — 10 each'],
+        exercises:[
+          {name:'Bulgarian split squat',sets:'4×10 each'},
+          {name:'Glute bridge with pause',sets:'3×15'},
+          {name:'Reverse lunge',sets:'3×12'},
+          {name:'Single-leg calf raise',sets:'3×15'},
+          {name:'Nordic curl (eccentric)',sets:'2×5'}
+        ]
+      },
+      {
+        label:'Day 4 · Fri', name:'Upper + Core',
+        warmup:['Shoulder rotations — 10 each','Cat-cow — 10 reps','Band pull-apart — 10 reps'],
+        exercises:[
+          {name:'Archer push-up',sets:'3×8 each'},
+          {name:'Inverted row with pause',sets:'3×10'},
+          {name:'Plank shoulder tap',sets:'3×12 taps'},
+          {name:'Dead bug',sets:'3×8 each'},
+          {name:'Ab wheel rollout',sets:'3×8',alt:'Alt: Abs crunch — 3×15'}
+        ]
+      }
+    ]
+  },
+  advanced: {
+    vol: '4 days/week · Push / Pull / Legs / Upper+Core · 4–5 sets · 1 RIR · Harder variations',
+    tracker: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    trackerRest: [false,false,true,false,false,true,true],
+    days: [
+      {
+        label:'Day 1 · Mon', name:'Push',
+        warmup:['Band dislocates — 10 reps','Shoulder rotations — 10 each','Burpees — 10 reps'],
+        exercises:[
+          {name:'Handstand push-up (assisted or full)',sets:'4×5'},
+          {name:'Deep ROM push-up (elevated hands)',sets:'4×10'},
+          {name:'Weighted push-up (vest/bag)',sets:'3×10'},
+          {name:'Heavy band tricep pushdown',sets:'3×12'},
+          {name:'Band external rotation + pause',sets:'3×12'}
+        ]
+      },
+      {
+        label:'Day 2 · Tue', name:'Pull',
+        warmup:['Band dislocates — 10 reps','Scapular retractions — 10 reps','Dead hang — 20s'],
+        exercises:[
+          {name:'Weighted pull-up (vest/bag)',sets:'5×5'},
+          {name:'Inverted row (feet elevated)',sets:'4×10'},
+          {name:'Heavy face pull with pause',sets:'3×15'},
+          {name:'Concentration curl (band)',sets:'3×12'},
+          {name:'Y raise (floor or band)',sets:'3×12'}
+        ]
+      },
+      {
+        label:'Day 3 · Thu', name:'Legs',
+        warmup:['Hip 90/90 — 5 each','Cossack squat — 10 reps','Glute bridge — 15 reps'],
+        exercises:[
+          {name:'Pistol squat (or progression)',sets:'4×5 each'},
+          {name:'Bulgarian split squat (band)',sets:'4×10'},
+          {name:'Single-leg glute bridge with pause',sets:'3×12'},
+          {name:'Nordic curl (full)',sets:'3×5'},
+          {name:'Single-leg calf raise (weighted)',sets:'3×20'}
+        ]
+      },
+      {
+        label:'Day 4 · Fri', name:'Upper + Core',
+        warmup:['Band dislocates — 10 reps','Shoulder rotations — 10 each','Dead hang — 20s'],
+        exercises:[
+          {name:'Archer push-up with pause',sets:'4×6 each'},
+          {name:'Inverted row, knees elevated',sets:'3×10'},
+          {name:'Plank arm extension',sets:'3×10'},
+          {name:'Dragon flag eccentric',sets:'3×5'},
+          {name:'L-sit progression',sets:'3×10s hold'}
+        ]
+      }
+    ]
+  }
+};
+
+function renderTraining(level) {
+  const p = plans[level];
+  document.getElementById('vol-text').textContent = p.vol;
+  let html = '';
+
+  if(level === 'beginner') {
+    p.days.forEach(day => {
+      html += `<div class="session-card">
+        <div class="warmup-header"><i class="ti ti-flame" style="font-size:14px;color:var(--green-dim);" aria-hidden="true"></i><span class="warmup-label">Warmup · ${day.label.split('·')[0].trim()}</span></div>
+        <ul class="warmup-list">`;
+      day.warmup.forEach(w => {
+        const parts = w.split('—');
+        html += `<li>${parts[0].trim()}${parts[1]?` <span>${parts[1].trim()}</span>`:''}</li>`;
+      });
+      html += `</ul><div class="ex-header">Workout — ${day.name}</div><ul class="exercise-list">`;
+      day.exercises.forEach(e => {
+        html += `<li>${e[0]} <span class="ex-sets">${e[1]}</span></li>`;
+      });
+      html += `</ul></div>`;
+    });
+  } else {
+    html += `<div class="split-grid">`;
+    p.days.forEach(day => {
+      html += `<div class="split-day">
+        <div class="split-day-header">
+          <div class="split-day-label">${day.label}</div>
+          <div class="split-day-name">${day.name}</div>
+        </div>
+        <div class="split-warmup"><div class="split-warmup-label">Warmup</div><ul>`;
+      day.warmup.forEach(w => { html += `<li>${w}</li>`; });
+      html += `</ul></div><ul class="split-exercises">`;
+      day.exercises.forEach(e => {
+        const name = e.name || e;
+        const sets = e.sets || e[1];
+        const alt = e.alt || '';
+        html += `<li><div class="split-ex-left"><span>${name}</span>${alt?`<span class="split-ex-alt">${alt}</span>`:''}</div><span class="ex-sets">${sets}</span></li>`;
+      });
+      html += `</ul></div>`;
+    });
+    html += `</div>`;
+  }
+
+  document.getElementById('training-content').innerHTML = html;
+
+  const wg = document.getElementById('week-tracker');
+  wg.innerHTML = '';
+  p.tracker.forEach((d,i) => {
+    const isRest = p.trackerRest[i];
+    wg.innerHTML += `<div class="week-day"><div class="week-day-label">${d}</div><div class="week-dot${isRest?' rest-day':''}"${isRest?'':' onclick="toggleDot(this)"'}></div></div>`;
+  });
+}
+
+function setLevel(level, btn) {
+  document.querySelectorAll('.level-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTraining(level);
+}
+
+function showPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function toggleDot(el) { el.classList.toggle('done'); }
+
+function toggleCheck(box) {
+  box.classList.toggle('checked');
+  box.nextElementSibling.classList.toggle('checked');
+}
+
+renderTraining('beginner');
+</script>
+</body>
+</html>

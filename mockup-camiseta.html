@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÁPICE — Mockup Camiseta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #111113;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      font-family: 'Inter', sans-serif;
+    }
+    .scene { display: flex; gap: 64px; align-items: flex-start; flex-wrap: wrap; justify-content: center; }
+    .view { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .tag { font-size: 10px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: #3a3a44; }
+  </style>
+</head>
+<body>
+<div class="scene">
+
+  <!-- FRENTE -->
+  <div class="view">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" width="300">
+      <defs>
+        <linearGradient id="fab" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#181818"/>
+          <stop offset="18%"  stop-color="#222224"/>
+          <stop offset="50%"  stop-color="#282829"/>
+          <stop offset="82%"  stop-color="#222224"/>
+          <stop offset="100%" stop-color="#181818"/>
+        </linearGradient>
+        <linearGradient id="fabside" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#111112"/>
+          <stop offset="100%" stop-color="#1e1e20"/>
+        </linearGradient>
+        <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0.38"/>
+        </linearGradient>
+        <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#00D67A"/>
+          <stop offset="100%" stop-color="#3DEDA4"/>
+        </linearGradient>
+        <filter id="sh">
+          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#000" flood-opacity="0.65"/>
+        </filter>
+      </defs>
+
+      <g filter="url(#sh)">
+        <!-- ── CORPO ── -->
+        <path d="
+          M 80 430 L 80 175
+          C 50 170 28 162 20 152
+          L 8 108
+          C 20 95 44 80 66 72
+          L 108 56
+          C 120 88 148 108 200 108
+          C 252 108 280 88 292 56
+          L 334 72
+          C 356 80 380 95 392 108
+          L 380 152
+          C 372 162 350 170 320 175
+          L 320 430 Z
+        " fill="url(#fab)"/>
+
+        <!-- Sombra lateral esq -->
+        <path d="M 80 430 L 80 175 C 50 170 28 162 20 152 L 8 108 C 20 95 44 80 66 72 L 108 56 C 120 88 148 108 200 108 L 200 430 Z" fill="#111112" opacity="0.35"/>
+        <!-- Sombra lateral dir -->
+        <path d="M 320 430 L 320 175 C 350 170 372 162 380 152 L 392 108 C 380 95 356 80 334 72 L 292 56 C 280 88 252 108 200 108 L 200 430 Z" fill="#111112" opacity="0.28"/>
+
+        <!-- Manga esq -->
+        <path d="M 66 72 L 8 108 L 20 152 C 28 162 50 170 80 175 L 92 138 C 86 120 76 95 66 72 Z" fill="#1d1d1f"/>
+        <!-- Manga dir -->
+        <path d="M 334 72 L 392 108 L 380 152 C 372 162 350 170 320 175 L 308 138 C 314 120 324 95 334 72 Z" fill="#1d1d1f"/>
+
+        <!-- Costura manga esq -->
+        <path d="M 20 152 C 38 158 60 168 80 175" fill="none" stroke="#252528" stroke-width="1"/>
+        <!-- Costura manga dir -->
+        <path d="M 380 152 C 362 158 340 168 320 175" fill="none" stroke="#252528" stroke-width="1"/>
+
+        <!-- Gola -->
+        <path d="
+          M 108 56
+          C 120 88 148 108 200 108
+          C 252 108 280 88 292 56
+          C 268 48 236 44 200 44
+          C 164 44 132 48 108 56 Z
+        " fill="#1c1c1e"/>
+        <!-- Rib gola exterior -->
+        <path d="M 112 60 C 124 88 150 104 200 104 C 250 104 276 88 288 60" fill="none" stroke="#2c2c30" stroke-width="1.8"/>
+        <!-- Rib gola interior -->
+        <path d="M 116 64 C 128 90 152 102 200 102 C 248 102 272 90 284 64" fill="none" stroke="#232326" stroke-width="1"/>
+
+        <!-- Dobra central -->
+        <line x1="200" y1="112" x2="198" y2="426" stroke="#1a1a1c" stroke-width="1.5" opacity="0.45"/>
+        <!-- Dobras tecido -->
+        <path d="M 168 190 C 170 260 168 330 169 400" fill="none" stroke="#1e1e20" stroke-width="1" opacity="0.55"/>
+        <path d="M 232 200 C 230 270 231 340 230 410" fill="none" stroke="#1e1e20" stroke-width="1" opacity="0.45"/>
+
+        <!-- Barra inferior -->
+        <line x1="80" y1="424" x2="320" y2="424" stroke="#222224" stroke-width="2"/>
+        <line x1="80" y1="428" x2="320" y2="428" stroke="#1a1a1a" stroke-width="1"/>
+
+        <!-- Costura lateral -->
+        <line x1="80" y1="176" x2="80" y2="427" stroke="#202022" stroke-width="1"/>
+        <line x1="320" y1="176" x2="320" y2="427" stroke="#202022" stroke-width="1"/>
+
+        <!-- Shade geral -->
+        <path d="M 80 175 L 320 175 L 320 430 L 80 430 Z" fill="url(#shade)"/>
+      </g>
+
+      <!-- ── LOGO — peito esquerdo (direita do observador) ── -->
+      <!-- Círculo 28px, centrado em x≈270, y≈200 -->
+      <g transform="translate(225,185)">
+        <circle cx="22" cy="22" r="19" stroke="url(#lg)" stroke-width="0.9" fill="none"/>
+        <!-- Cabeça -->
+        <circle cx="22" cy="10" r="3.2" fill="none" stroke="url(#lg)" stroke-width="0.9"/>
+        <!-- Corpo -->
+        <line x1="22" y1="13.2" x2="22" y2="25" stroke="url(#lg)" stroke-width="0.9" stroke-linecap="round"/>
+        <!-- Braços -->
+        <line x1="22" y1="17" x2="16" y2="22" stroke="url(#lg)" stroke-width="0.9" stroke-linecap="round"/>
+        <line x1="22" y1="17" x2="28" y2="22" stroke="url(#lg)" stroke-width="0.9" stroke-linecap="round"/>
+        <!-- Pernas -->
+        <line x1="22" y1="25" x2="16" y2="30" stroke="url(#lg)" stroke-width="0.9" stroke-linecap="round"/>
+        <line x1="22" y1="25" x2="28" y2="30" stroke="url(#lg)" stroke-width="0.9" stroke-linecap="round"/>
+        <!-- Separador -->
+        <line x1="47" y1="8" x2="47" y2="36" stroke="#2e2e36" stroke-width="0.8"/>
+        <!-- Wordmark -->
+        <text x="53" y="26" font-family="'Montserrat',sans-serif" font-weight="300" font-size="13" letter-spacing="5" fill="#E8E8EA">ÁPICE</text>
+        <!-- Tagline -->
+        <text x="54" y="34" font-family="'Inter',sans-serif" font-weight="300" font-size="3.8" letter-spacing="2.2" fill="#00D67A">CORPO · MÉTODO · RESULTADO</text>
+      </g>
+    </svg>
+    <span class="tag">Frente</span>
+  </div>
+
+  <!-- COSTAS -->
+  <div class="view">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" width="300">
+      <defs>
+        <linearGradient id="fab2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#171717"/>
+          <stop offset="18%"  stop-color="#202022"/>
+          <stop offset="50%"  stop-color="#262628"/>
+          <stop offset="82%"  stop-color="#202022"/>
+          <stop offset="100%" stop-color="#171717"/>
+        </linearGradient>
+        <linearGradient id="shade2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#000" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0.32"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#00D67A"/>
+          <stop offset="100%" stop-color="#3DEDA4"/>
+        </linearGradient>
+        <filter id="sh2">
+          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#000" flood-opacity="0.6"/>
+        </filter>
+      </defs>
+
+      <g filter="url(#sh2)">
+        <path d="M 80 430 L 80 175 C 50 170 28 162 20 152 L 8 108 C 20 95 44 80 66 72 L 108 56 C 120 88 148 108 200 108 C 252 108 280 88 292 56 L 334 72 C 356 80 380 95 392 108 L 380 152 C 372 162 350 170 320 175 L 320 430 Z" fill="url(#fab2)"/>
+        <path d="M 80 430 L 80 175 C 50 170 28 162 20 152 L 8 108 C 20 95 44 80 66 72 L 108 56 C 120 88 148 108 200 108 L 200 430 Z" fill="#111112" opacity="0.3"/>
+        <path d="M 320 430 L 320 175 C 350 170 372 162 380 152 L 392 108 C 380 95 356 80 334 72 L 292 56 C 280 88 252 108 200 108 L 200 430 Z" fill="#111112" opacity="0.24"/>
+        <path d="M 66 72 L 8 108 L 20 152 C 28 162 50 170 80 175 L 92 138 C 86 120 76 95 66 72 Z" fill="#1c1c1e"/>
+        <path d="M 334 72 L 392 108 L 380 152 C 372 162 350 170 320 175 L 308 138 C 314 120 324 95 334 72 Z" fill="#1c1c1e"/>
+        <path d="M 20 152 C 38 158 60 168 80 175" fill="none" stroke="#232326" stroke-width="1"/>
+        <path d="M 380 152 C 362 158 340 168 320 175" fill="none" stroke="#232326" stroke-width="1"/>
+        <path d="M 108 56 C 120 88 148 108 200 108 C 252 108 280 88 292 56 C 268 48 236 44 200 44 C 164 44 132 48 108 56 Z" fill="#1c1c1e"/>
+        <path d="M 112 60 C 124 88 150 104 200 104 C 250 104 276 88 288 60" fill="none" stroke="#2c2c30" stroke-width="1.8"/>
+        <line x1="200" y1="112" x2="198" y2="426" stroke="#1a1a1c" stroke-width="1.5" opacity="0.4"/>
+        <path d="M 168 190 C 170 260 168 330 169 400" fill="none" stroke="#1e1e20" stroke-width="1" opacity="0.5"/>
+        <path d="M 232 200 C 230 270 231 340 230 410" fill="none" stroke="#1e1e20" stroke-width="1" opacity="0.4"/>
+        <line x1="80" y1="424" x2="320" y2="424" stroke="#222224" stroke-width="2"/>
+        <line x1="80" y1="428" x2="320" y2="428" stroke="#1a1a1a" stroke-width="1"/>
+        <line x1="80" y1="176" x2="80" y2="427" stroke="#202022" stroke-width="1"/>
+        <line x1="320" y1="176" x2="320" y2="427" stroke="#202022" stroke-width="1"/>
+        <path d="M 80 175 L 320 175 L 320 430 L 80 430 Z" fill="url(#shade2)"/>
+      </g>
+
+      <!-- ── LOGO COSTAS — centralizado, tamanho médio ── -->
+      <g transform="translate(148, 195)">
+        <circle cx="52" cy="52" r="44" stroke="url(#lg2)" stroke-width="1.2" fill="none"/>
+        <!-- Cabeça -->
+        <circle cx="52" cy="28" r="7.5" fill="none" stroke="url(#lg2)" stroke-width="1.2"/>
+        <!-- Corpo -->
+        <line x1="52" y1="35.5" x2="52" y2="60" stroke="url(#lg2)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Braços -->
+        <line x1="52" y1="43" x2="42" y2="53" stroke="url(#lg2)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="52" y1="43" x2="62" y2="53" stroke="url(#lg2)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Pernas -->
+        <line x1="52" y1="60" x2="42" y2="70" stroke="url(#lg2)" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="52" y1="60" x2="62" y2="70" stroke="url(#lg2)" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Separador -->
+        <line x1="110" y1="20" x2="110" y2="84" stroke="#2e2e36" stroke-width="0.9"/>
+        <!-- Wordmark -->
+        <text x="120" y="59" font-family="'Montserrat',sans-serif" font-weight="300" font-size="30" letter-spacing="10" fill="#E8E8EA">ÁPICE</text>
+        <!-- Tagline -->
+        <text x="121" y="74" font-family="'Inter',sans-serif" font-weight="300" font-size="8" letter-spacing="4" fill="#00D67A">CORPO · MÉTODO · RESULTADO</text>
+      </g>
+    </svg>
+    <span class="tag">Costas</span>
+  </div>
+
+</div>
+
+<!-- Etiqueta produto -->
+<div style="margin-top:52px;text-align:center">
+  <div style="display:inline-flex;flex-direction:column;align-items:center;gap:10px;padding:22px 44px;border:1px solid #1e1e22;border-radius:2px">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 40" fill="none" style="height:24px;width:auto">
+      <defs>
+        <linearGradient id="lgtag" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#00D67A"/>
+          <stop offset="100%" stop-color="#3DEDA4"/>
+        </linearGradient>
+      </defs>
+      <circle cx="20" cy="20" r="16" stroke="url(#lgtag)" stroke-width="0.9" fill="none"/>
+      <circle cx="20" cy="11" r="3" fill="none" stroke="url(#lgtag)" stroke-width="0.9"/>
+      <line x1="20" y1="14" x2="20" y2="24" stroke="url(#lgtag)" stroke-width="0.9" stroke-linecap="round"/>
+      <line x1="20" y1="18" x2="17" y2="22" stroke="url(#lgtag)" stroke-width="0.9" stroke-linecap="round"/>
+      <line x1="20" y1="18" x2="23" y2="22" stroke="url(#lgtag)" stroke-width="0.9" stroke-linecap="round"/>
+      <line x1="20" y1="24" x2="17" y2="28" stroke="url(#lgtag)" stroke-width="0.9" stroke-linecap="round"/>
+      <line x1="20" y1="24" x2="23" y2="28" stroke="url(#lgtag)" stroke-width="0.9" stroke-linecap="round"/>
+      <line x1="44" y1="8" x2="44" y2="32" stroke="#252530" stroke-width="0.9"/>
+      <text x="52" y="25" font-family="'Montserrat',sans-serif" font-weight="300" font-size="16" letter-spacing="8" fill="#F4F4F6">ÁPICE</text>
+      <text x="53" y="34" font-family="'Inter',sans-serif" font-weight="300" font-size="5" letter-spacing="3.2" fill="#00D67A">PERFORMANCE SYSTEM</text>
+    </svg>
+    <span style="font-family:'Inter',sans-serif;font-size:10px;font-weight:300;letter-spacing:0.14em;color:#3a3a44;text-transform:uppercase">Camiseta Premium · Dry-fit · Preta</span>
+  </div>
+</div>
+
+</body>
+</html>
