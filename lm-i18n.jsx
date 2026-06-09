@@ -5,7 +5,30 @@
 //   <LangToggle />                      // pill-style PT/EN toggle button
 
 const LANG_LISTENERS = new Set();
-let __lang = (typeof localStorage !== 'undefined' && localStorage.getItem('apice_lang')) || 'pt';
+
+// Decide o idioma inicial nesta ordem de prioridade:
+//   1. URL  ->  ?lang=en  |  ?lang=pt   (também aceita #en / #/en e caminho /en)
+//   2. Idioma salvo de uma visita anterior (localStorage)
+//   3. Português (padrão)
+const __readLangFromURL = () => {
+  try {
+    const p = new URLSearchParams(window.location.search);
+    const q = (p.get('lang') || p.get('idioma') || '').toLowerCase();
+    if (q === 'en' || q === 'ingles' || q === 'english') return 'en';
+    if (q === 'pt' || q === 'portugues' || q === 'pt-br') return 'pt';
+    const h = (window.location.hash || '').toLowerCase().replace(/[^a-z]/g, '');
+    if (h === 'en') return 'en';
+    if (h === 'pt') return 'pt';
+    const path = (window.location.pathname || '').toLowerCase();
+    if (/(^|\/)en(\/|$)/.test(path)) return 'en';
+  } catch (e) {}
+  return null;
+};
+
+let __lang =
+  __readLangFromURL() ||
+  (typeof localStorage !== 'undefined' && localStorage.getItem('apice_lang')) ||
+  'pt';
 
 const getLang = () => __lang;
 const setLang = (l) => {
@@ -14,6 +37,13 @@ const setLang = (l) => {
   try { localStorage.setItem('apice_lang', l); } catch (e) {}
   // update <html lang="..."> for accessibility/SEO
   try { document.documentElement.setAttribute('lang', l === 'en' ? 'en' : 'pt-BR'); } catch(e){}
+  // keep the URL shareable: EN -> ?lang=en, PT -> remove the param
+  try {
+    const url = new URL(window.location.href);
+    if (l === 'en') url.searchParams.set('lang', 'en');
+    else url.searchParams.delete('lang');
+    window.history.replaceState({}, '', url);
+  } catch (e) {}
   LANG_LISTENERS.forEach(fn => { try { fn(l); } catch(e){} });
 };
 

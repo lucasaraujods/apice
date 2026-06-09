@@ -45,7 +45,7 @@ const NavBar = () => {
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <LangToggle />
         <Btn size="sm" onClick={() => window.apiceCTA()} className="dsk">
-          {tx('Quero ter acesso a consultoria', 'I want access to consulting')}
+          {tx('Quero ter acesso a consultoria', 'I want access to coaching')}
         </Btn>
       </div>
     </nav>);
@@ -328,7 +328,7 @@ const TeamSection = () => (
         {/* Imagem do time */}
         <div className="rv d2" style={{ position: 'relative' }}>
           <div style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', border: '1px solid var(--lm-graphite)', maxWidth: 440, margin: '0 auto', boxShadow: '0 24px 60px rgba(0,0,0,0.5)' }}>
-            <img src="uploads/team-apice.png" alt={tx('Time Ápice', 'Team Apex')}
+            <img src="uploads/pasted-1781045608765-0.png" alt={tx('Time Ápice', 'Team Apex')}
               style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 55%, rgba(11,11,13,0.85) 100%)', pointerEvents: 'none' }} />
             <div style={{ position: 'absolute', left: 22, bottom: 20, right: 22 }}>
@@ -344,11 +344,17 @@ const TeamSection = () => (
 
 const SolucaoSection = () => {
   const SOL_ITEMS = [
-    { icon: 'target',
+    { icon: 'target', enOnly: true,
       title: tx('Anamnese Online', 'Online Anamnesis'),
       desc: tx(
         'Sua avaliação começa pelo celular: medidas e composição estimadas por fotos e parâmetros de mudança física, acompanhadas mês a mês. Você vê a evolução sem sair de casa.',
         'Your assessment starts on your phone: measurements and composition estimated from photos and physical-change parameters, tracked month over month. You see your progress without leaving home.'
+      ) },
+    { icon: 'shield', ptOnly: true,
+      title: tx('Plano nutricional', 'Nutrition plan'),
+      desc: tx(
+        'Estratégia alimentar pensada para o seu objetivo e a sua rotina, integrada ao treino. Sem dieta genérica: o que você come trabalha a favor do seu resultado.',
+        'A nutrition strategy designed for your goal and routine, integrated with training. No generic diet: what you eat works in favor of your result.'
       ) },
     { icon: 'zap',
       title: tx('Treino', 'Training'),
@@ -356,11 +362,17 @@ const SolucaoSection = () => {
         'Protocolo periodizado, ajustado continuamente aos seus dados. Sem ficha genérica, sem estagnação. Cada sessão conta porque foi pensada.',
         'A periodized protocol continuously adjusted to your data. No cookie-cutter sheets, no plateaus. Every session counts because it was thought through.'
       ) },
-    { icon: 'heart', enOnly: false, ptOnly: true,
+    { icon: 'heart', ptOnly: true,
       title: tx('Massoterapia', 'Massage Therapy'),
       desc: tx(
         'Massoterapia esportiva parte do protocolo, não de fora dele. Resultado vem do treino e da recuperação juntos, não de um separado do outro.',
         'Sports massage as part of the protocol, not an add-on. Results come from training and recovery together — not from one without the other.'
+      ) },
+    { icon: 'target', ptOnly: true,
+      title: tx('Avaliação física', 'Physical assessment'),
+      desc: tx(
+        'Medidas, composição corporal e indicadores de força acompanhados periodicamente. Você enxerga a evolução em dados, não em achismo.',
+        'Measurements, body composition and strength indicators tracked periodically. You see your progress in data — not guesswork.'
       ) },
     { icon: 'compass', enOnly: true,
       title: tx('Direção quando precisa', 'Direction when you need it'),
@@ -377,7 +389,7 @@ const SolucaoSection = () => {
           {tx('Em vez de 4 profissionais soltos,', 'Instead of 4 disconnected professionals,')} <span style={{ color: 'var(--lm-green)' }}>{tx('um sistema integrado', 'one integrated system')}</span>
         </h2>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 22 }}>
+      <div className={`metodo-grid ${SOL_ITEMS.length === 3 ? 'cols-3' : 'cols-2'}`}>
         {SOL_ITEMS.map((item, i) => <SolCard key={i} item={item} delay={i % 4 + 1} />)}
       </div>
     </W>
@@ -439,16 +451,34 @@ const BeneficiosSection = () => {
     <W>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 64, alignItems: 'center' }}>
         <div className="rv">
-          <Brow inv>{tx('Massoterapia Ápice', 'Ápice Massage Therapy')}</Brow>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(24px,3.5vw,42px)', lineHeight: 1.1, color: 'var(--tinv)', letterSpacing: '-0.02em', marginBottom: 24, textWrap: 'balance' }}>
-            {tx('Seu corpo merece', 'Your body deserves')} <span style={{ color: 'var(--lm-green-deep)' }}>{tx('recuperação de verdade', 'real recovery')}</span>
+          <Brow inv>{tx('Ecossistema Ápice', 'Ápice Ecosystem')}</Brow>
+          <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(24px,3.5vw,42px)', lineHeight: 1.1, color: 'var(--tinv)', letterSpacing: '-0.02em', marginBottom: 20, textWrap: 'balance' }}>
+            {tx('Quatro frentes,', 'Four fronts,')} <span style={{ color: 'var(--lm-green-deep)' }}>{tx('um só resultado', 'one single result')}</span>
           </h2>
-          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 'clamp(15px,1.7vw,17px)', lineHeight: 1.7, color: '#2e2e36', maxWidth: 460, marginBottom: 24 }}>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 'clamp(15px,1.7vw,17px)', lineHeight: 1.7, color: '#2e2e36', maxWidth: 460, marginBottom: 28 }}>
             {tx(
-              'Recuperação muscular, alívio de tensões e liberação de nódulos, disponível como serviço avulso ou já incluída no pacote completo ÁPICE.',
-              'Muscle recovery, tension relief and knot release — available on its own or already included in the complete ÁPICE package.'
+              'Nutrição, treino, massoterapia e avaliação física trabalhando juntos, em um único acompanhamento que enxerga o seu corpo por inteiro.',
+              'Nutrition, training, massage therapy and physical assessment working together, in a single program that sees your body as a whole.'
             )}
           </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 20px', marginBottom: 28, maxWidth: 460 }}>
+            {[
+              { ic: 'shield', t: tx('Nutrição', 'Nutrition') },
+              { ic: 'zap', t: tx('Treino', 'Training') },
+              { ic: 'heart', t: tx('Massoterapia', 'Massage therapy') },
+              { ic: 'target', t: tx('Avaliação física', 'Physical assessment') },
+            ].map((p, i) => {
+              const IC = Ic[p.ic];
+              return (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ flexShrink: 0, width: 38, height: 38, borderRadius: 10, background: 'rgba(0,140,80,0.10)', border: '1px solid rgba(0,140,80,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <IC s={18} c="var(--lm-green-deep)" />
+                  </span>
+                  <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 600, fontSize: 15, color: 'var(--tinv)', letterSpacing: '-0.01em' }}>{p.t}</span>
+                </div>
+              );
+            })}
+          </div>
           <a href="#servicos" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: "'Inter',sans-serif", fontSize: 14, fontWeight: 600, color: 'var(--lm-green-deep)', textDecoration: 'none' }}>
             {tx('Ver nos serviços', 'See in services')} <Ic.arr s={14} c="var(--lm-green-deep)" />
           </a>
