@@ -83,5 +83,5 @@ const useCountUp = (target,dur=1200) => {
   return [n,ref];
 };
 
-const WA_URL = 'https://wa.me/5561996642909';
+const WA_URL = 'https://wa.me/5561982606579';
 Object.assign(window,{Ic,ImgPH,Brow,Btn,Pill,W,useCountUp,WA_URL});

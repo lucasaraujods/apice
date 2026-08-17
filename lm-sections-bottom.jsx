@@ -16,8 +16,8 @@ const EstatisticasSection = () =>
     <W>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(180px,1fr))' }}>
         <StatCard target={300} prefix="+" suffix="" label={tx('Alunos acompanhados', 'Clients coached')} />
-        <StatCard target={97} suffix="%" label={tx('Acertvidade na metodologia', 'Methodology accuracy')} />
-        <StatCard target={4} prefix="+" suffix="" label={tx('Anos de atuação integrada', 'Years of integrated practice')} />
+        <StatCard target={100} prefix="+" suffix="" label={tx('Vidas transformadas', 'Lives transformed')} />
+        <StatCard target={5} prefix="+" suffix="" label={tx('Países de atuação', 'Countries served')} />
       </div>
     </W>
   </section>;
@@ -87,7 +87,7 @@ const DepoimentosSection = () => {
   { quote: tx('Finalmente entendi a diferença entre treinar e treinar com método. Em 8 semanas mudei minha composição corporal e parei de sentir dor no joelho.',
     'I finally understood the difference between training and training with a method. In 8 weeks I changed my body composition and stopped feeling knee pain.'),
     name: 'Hugo',
-    detail: tx('23 anos', 'Age 23'),
+    detail: tx('31 anos', 'Age 31'),
     avatar: 'uploads/WhatsApp Image 2026-06-01 at 15.45.03.png',
     avatarPos: 'center',
     avatarScale: 1.7,
@@ -106,7 +106,7 @@ const DepoimentosSection = () => {
   { quote: tx('O que me surpreendeu foi a clareza. Desde o dia 1 eu sabia onde estava, pra onde ia e o que meu corpo precisava. Nunca tive isso antes.',
     "What surprised me was the clarity. From day 1 I knew where I was, where I was going and what my body needed. I'd never had that before."),
     name: 'Vitória',
-    detail: tx('31 anos', 'Age 31'),
+    detail: tx('26 anos', 'Age 26'),
     avatar: 'uploads/pasted-1780339469257-0.png',
     avatarPos: 'center top',
     beforeAfter: [
@@ -114,6 +114,15 @@ const DepoimentosSection = () => {
       { before: 'uploads/vitoria-costas-antes-2.png', after: 'uploads/vitoria-costas-depois-2.png' },
       { before: 'uploads/vitoria-perfil-antes-1.png', after: 'uploads/vitoria-perfil-depois-1.png' },
       { before: 'uploads/vitoria-perfil-antes-2.png', after: 'uploads/vitoria-perfil-depois-2.png' },
+    ] },
+  { quote: tx('Tive acompanhamento nutricional e ajuda nos treinos junto com a avaliação física, que mostrou exatamente quais partes do meu corpo eu precisava desenvolver. Com tudo integrado, parei de treinar no escuro e finalmente vi o shape mudar.',
+    'I had nutritional coaching and training support together with a physical assessment that showed exactly which parts of my body I needed to develop. With everything integrated, I stopped training in the dark and finally saw my physique change.'),
+    name: 'João Flávio',
+    detail: tx('23 anos', 'Age 23'),
+    avatar: 'uploads/joao-perfil.png',
+    avatarPos: 'center',
+    beforeAfter: [
+      { before: 'uploads/pasted-1781049616310-0.png', after: 'uploads/pasted-1781049630401-0.png' },
     ] }];
 
   return (
@@ -220,12 +229,13 @@ const SERVICE_BLOCKS = () => [
   {
     id: 'massoterapia',
     icon: '💆',
-    title: tx('Massoterapia a Domicílio', 'Home Massage Therapy'),
-    sub: tx('Recuperação especializada no conforto da sua casa.',
-            'Specialized recovery in the comfort of your home.'),
+    title: tx('Massoterapia', 'Massage Therapy'),
+    sub: tx('Recuperação especializada no estúdio Ápice ou no conforto da sua casa.',
+            'Specialized recovery at the Ápice studio or in the comfort of your home.'),
     featured: false,
     wa: tx('Oi, quero agendar uma sessão de massoterapia', 'Hi, I want to schedule a massage therapy session'),
     items: [
+      tx('Sessões no estúdio Ápice ou a domicílio', 'Sessions at the Ápice studio or at home'),
       tx('Massoterapia 1× por mês', 'Massage therapy once a month'),
     ],
   },
@@ -238,7 +248,7 @@ const SERVICE_BLOCKS = () => [
     featured: false,
     wa: tx('Oi, quero ter acesso a consultoria online', 'Hi, I want access to online coaching'),
     items: [
-      tx('Treino sem acompanhamento presencial', 'Online training coaching'),
+      tx('Consultoria de treinamento online', 'Online training coaching'),
       tx('Dieta', 'Diet plan'),
       tx('Anamnese completa', 'Full anamnesis'),
       tx('Dashboard de evolução', 'Progress dashboard'),
@@ -255,13 +265,12 @@ const SERVICE_BLOCKS = () => [
     badge: tx('Mais completo', 'Most complete'),
     wa: tx('Oi, quero ter acesso ao plano Ápice', 'Hi, I want access to the Ápice plan'),
     items: [
-      tx('Treino sem acompanhamento presencial', 'Online training coaching'),
+      tx('Consultoria de treinamento online', 'Online training coaching'),
       tx('Dieta', 'Diet plan'),
       tx('Anamnese completa', 'Full anamnesis'),
       tx('Dashboard de evolução', 'Progress dashboard'),
       tx('Materiais bônus: ebooks, guias', 'Bonus materials: ebooks, guides'),
       tx('Avaliação física 1× por mês', 'Physical assessment once a month'),
-      tx('2 sessões de massoterapia', '2 massage therapy sessions'),
     ],
   },
 ];
@@ -627,7 +636,7 @@ const FooterSection = () =>
           </p>
           {(getLang() === 'en'
             ? ['Online']
-            : [tx('Online', 'Online'), 'ÁPICE', tx('Avaliação Física', 'Physical Assessment'), tx('Massoterapia a Domicílio', 'Home Massage Therapy')]
+            : [tx('Online', 'Online'), 'ÁPICE', tx('Avaliação Física', 'Physical Assessment'), tx('Massoterapia', 'Massage Therapy')]
           ).map((s) =>
         <p key={s} style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, color: 'var(--lm-mist)', marginBottom: 8 }}>{s}</p>
         )}

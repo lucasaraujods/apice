@@ -38,18 +38,23 @@
     button{font-family:inherit;cursor:pointer}
     a{color:inherit;text-decoration:none}
     /* Testimonials: grid on desktop, swipeable carousel on mobile */
-    .depo-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+    /* Testimonials: horizontal swipeable carousel on all sizes */
+    .depo-track{
+      display:flex;
+      gap:22px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:10px;
+      scrollbar-width:none;
+    }
+    .depo-track::-webkit-scrollbar{height:0}
+    .depo-track>*{
+      flex:0 0 calc((100% - 44px) / 3);
+      scroll-snap-align:start;
+    }
     @media(max-width:767px){
-      .depo-track{
-        display:flex;
-        gap:16px;
-        overflow-x:auto;
-        scroll-snap-type:x mandatory;
-        -webkit-overflow-scrolling:touch;
-        padding-bottom:14px;
-        scroll-padding:0 20px;
-      }
-      .depo-track::-webkit-scrollbar{height:0}
+      .depo-track{ gap:16px; padding-bottom:14px; scroll-padding:0 20px; }
       .depo-track>*{
         flex:0 0 85%;
         scroll-snap-align:center;

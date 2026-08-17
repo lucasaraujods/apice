@@ -241,14 +241,14 @@ const CountdownSection = ({ timeLeft, show }) => {
 
 const DorSection = () => {
   const DOR_ITEMS = [
-    tx('Pagou consultoria online e recebeu uma planilha que poderia ser de qualquer pessoa.',
-       'Paid for online coaching and got a spreadsheet that could belong to anyone.'),
-    tx('Treinou com personal genérico que repete o mesmo treino há 6 meses.',
-       'Trained with a generic coach who has repeated the same workout for 6 months.'),
-    tx('Fez avaliação física e saiu do consultório com dobras anotadas, mas sem direção real.',
-       'Got a physical assessment and walked out with measurements written down, but no real direction.'),
-    tx('Já gastou mais do que devia em soluções soltas que nunca conversaram entre si.',
-       'Spent more than you should on disconnected solutions that never talked to each other.'),
+    tx('Já investiu em várias soluções, mas nenhuma delas conversava entre si.',
+       'Invested in several solutions, but none of them talked to each other.'),
+    tx('Se esforça muito, mas sente que evolui menos do que deveria.',
+       'Puts in a lot of effort, but feels like the progress is smaller than it should be.'),
+    tx('Recebe informações diferentes de cada profissional e não sabe qual caminho seguir.',
+       'Gets different advice from every professional and never knows which path to follow.'),
+    tx('Já tentou criar uma rotina saudável, mas nunca conseguiu mantê-la por muito tempo.',
+       'Has tried to build a healthy routine, but never managed to keep it for long.'),
   ];
   return (
   <section id="dor" style={{ background: 'var(--lm-charcoal)', padding: '100px 0' }}>
@@ -302,20 +302,20 @@ const TeamSection = () => (
           <Brow>{tx('Quem é a Ápice', 'Who is Apex')}</Brow>
           <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(26px,3.5vw,44px)', lineHeight: 1.1, color: 'var(--lm-pearl)', letterSpacing: '-0.02em', marginBottom: 22, textWrap: 'balance' }}>
             {tx(
-              <>Mais que um time. <span style={{ color: 'var(--lm-green)' }}>Um Time Ápice.</span></>,
-              <>More than a team. <span style={{ color: 'var(--lm-green)' }}>Team Apex.</span></>
+              <>Mais que um time. <span style={{ color: 'var(--lm-green)' }}>Um espaço da Ápice.</span></>,
+              <>More than a team. <span style={{ color: 'var(--lm-green)' }}>An Apex space.</span></>
             )}
           </h2>
           <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 'clamp(15px,1.7vw,17px)', lineHeight: 1.75, color: 'var(--t2)', marginBottom: 18, maxWidth: 520 }}>
             {tx(
-              'A Ápice nasceu para resolver o que estava quebrado: profissionais soltos cuidando do seu corpo em pedaços. Aqui, treinadores, avaliação física e nutrição operam como um sistema único, pensando o seu resultado por inteiro.',
-              'Apex was born to fix what was broken: disconnected professionals taking care of your body in pieces. Here, coaches, physical assessment and nutrition operate as a single system thinking about your results as a whole.'
+              'O estúdio Ápice nasceu para resolver o que estava quebrado. Profissionais soltos, com diferentes opiniões e sem metodologia, cuidando do seu corpo em pedaços. Aqui, nosso sistema único refaz a sua análise do zero. Treinadores, nutricionistas, recovery e acompanhamento de desempenho físico operam lado a lado, de forma única, dentro de um método validado.',
+              'The Apex studio was born to fix what was broken. Disconnected professionals, with different opinions and no methodology, taking care of your body in pieces. Here, our single system rebuilds your analysis from zero. Coaches, nutritionists, recovery and physical performance tracking operate side by side, as one, within a validated method.'
             )}
           </p>
           <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 'clamp(15px,1.7vw,17px)', lineHeight: 1.75, color: 'var(--t2)', maxWidth: 520 }}>
             {tx(
-              'O Time Ápice é formado por profissionais que vivem performance todos os dias e que tratam o seu progresso como missão pessoal.',
-              'Team Apex is made of professionals who live performance every day and who treat your progress as a personal mission.'
+              'O Time Ápice é formado por profissionais que vivem a performance diariamente e que tratam o seu progresso como uma missão pessoal. Sabendo te guiar do zero ao ÁPICE.',
+              'Team Apex is made of professionals who live performance every day and who treat your progress as a personal mission. Guiding you from zero to your APEX.'
             )}
           </p>
           <div style={{ marginTop: 28 }}>
@@ -328,13 +328,8 @@ const TeamSection = () => (
         {/* Imagem do time */}
         <div className="rv d2" style={{ position: 'relative' }}>
           <div style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', border: '1px solid var(--lm-graphite)', maxWidth: 440, margin: '0 auto', boxShadow: '0 24px 60px rgba(0,0,0,0.5)' }}>
-            <img src="uploads/pasted-1781045608765-0.png" alt={tx('Time Ápice', 'Team Apex')}
+            <img src="uploads/pasted-1787006121677-0.png" alt={tx('Time Ápice', 'Team Apex')}
               style={{ width: '100%', display: 'block', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 55%, rgba(11,11,13,0.85) 100%)', pointerEvents: 'none' }} />
-            <div style={{ position: 'absolute', left: 22, bottom: 20, right: 22 }}>
-              <p style={{ fontFamily: "'Raleway','Montserrat',sans-serif", fontWeight: 300, fontSize: 18, letterSpacing: '0.4em', color: 'var(--lm-pearl)', textIndent: '0.4em' }}>ÁPICE</p>
-              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--lm-green)', marginTop: 4 }}>{tx('Time Ápice', 'Team Apex')}</p>
-            </div>
           </div>
         </div>
       </div>
@@ -351,28 +346,28 @@ const SolucaoSection = () => {
         'Your assessment starts on your phone: measurements and composition estimated from photos and physical-change parameters, tracked month over month. You see your progress without leaving home.'
       ) },
     { icon: 'shield', ptOnly: true,
-      title: tx('Plano nutricional', 'Nutrition plan'),
+      title: tx('Protocolo de treino + dieta', 'Training + diet protocol'),
       desc: tx(
-        'Estratégia alimentar pensada para o seu objetivo e a sua rotina, integrada ao treino. Sem dieta genérica: o que você come trabalha a favor do seu resultado.',
-        'A nutrition strategy designed for your goal and routine, integrated with training. No generic diet: what you eat works in favor of your result.'
+        'Acompanhamento online completo com protocolo de treino e planilha alimentar personalizados. Estratégia integrada para potencializar sua performance e resultados, com ajustes contínuos de acordo com sua evolução.',
+        'Complete online coaching with a personalized training protocol and meal plan. An integrated strategy to boost your performance and results, with continuous adjustments as you evolve.'
       ) },
     { icon: 'zap',
-      title: tx('Treino', 'Training'),
+      title: tx('Plano Ápice', 'Ápice Plan'),
       desc: tx(
-        'Protocolo periodizado, ajustado continuamente aos seus dados. Sem ficha genérica, sem estagnação. Cada sessão conta porque foi pensada.',
-        'A periodized protocol continuously adjusted to your data. No cookie-cutter sheets, no plateaus. Every session counts because it was thought through.'
+        'O combo completo para quem busca máxima evolução. Inclui acompanhamento online de treino e dieta + avaliação física premium. Dados precisos, estratégia integrada e resultados reais.',
+        'The complete combo for those seeking maximum progress. Includes online training and diet coaching + premium physical assessment. Precise data, integrated strategy and real results.'
       ) },
     { icon: 'heart', ptOnly: true,
-      title: tx('Massoterapia', 'Massage Therapy'),
+      title: tx('Avaliação física premium', 'Premium physical assessment'),
       desc: tx(
-        'Massoterapia esportiva parte do protocolo, não de fora dele. Resultado vem do treino e da recuperação juntos, não de um separado do outro.',
-        'Sports massage as part of the protocol, not an add-on. Results come from training and recovery together — not from one without the other.'
+        'Análise completa do seu corpo e desempenho: composição corporal (bioimpedância, dobras e circunferências), avaliação postural, testes de força e desempenho, VO₂ máx, pressão arterial, saturação de oxigênio e muito mais. Relatório completo para orientar seu plano com precisão.',
+        'A complete analysis of your body and performance: body composition (bioimpedance, skinfolds and circumferences), postural assessment, strength and performance tests, VO₂ max, blood pressure, oxygen saturation and much more. A full report to guide your plan with precision.'
       ) },
     { icon: 'target', ptOnly: true,
-      title: tx('Avaliação física', 'Physical assessment'),
+      title: tx('Recovery', 'Recovery'),
       desc: tx(
-        'Medidas, composição corporal e indicadores de força acompanhados periodicamente. Você enxerga a evolução em dados, não em achismo.',
-        'Measurements, body composition and strength indicators tracked periodically. You see your progress in data — not guesswork.'
+        'Protocolos de recuperação para otimizar seu desempenho e bem-estar: massoterapia desenvolvida por técnicas de liberação miofascial, massagem terapêutica, eventual terapia e alongamentos específicos.',
+        'Recovery protocols to optimize your performance and well-being: massage therapy built on myofascial release techniques, therapeutic massage, occasional therapy and specific stretching.'
       ) },
     { icon: 'compass', enOnly: true,
       title: tx('Direção quando precisa', 'Direction when you need it'),
@@ -399,9 +394,10 @@ const SolucaoSection = () => {
 
 
 const BEN_IMAGES = [
+  'uploads/pasted-1787006837919-0.png',
+  'uploads/pasted-1787006846039-0.png',
+  'uploads/pasted-1787007194123-0.png',
   'uploads/pasted-1780335063687-0.png',
-  'uploads/pasted-1780335076433-0.png',
-  'uploads/pasted-1780335112181-0.png',
 ];
 
 const BenefitsCarousel = () => {
@@ -453,20 +449,20 @@ const BeneficiosSection = () => {
         <div className="rv">
           <Brow inv>{tx('Ecossistema Ápice', 'Ápice Ecosystem')}</Brow>
           <h2 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 'clamp(24px,3.5vw,42px)', lineHeight: 1.1, color: 'var(--tinv)', letterSpacing: '-0.02em', marginBottom: 20, textWrap: 'balance' }}>
-            {tx('Quatro frentes,', 'Four fronts,')} <span style={{ color: 'var(--lm-green-deep)' }}>{tx('um só resultado', 'one single result')}</span>
+            {tx('Alta performance,', 'High performance,')} <span style={{ color: 'var(--lm-green-deep)' }}>{tx('medida de verdade', 'truly measured')}</span>
           </h2>
           <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 'clamp(15px,1.7vw,17px)', lineHeight: 1.7, color: '#2e2e36', maxWidth: 460, marginBottom: 28 }}>
             {tx(
-              'Nutrição, treino, massoterapia e avaliação física trabalhando juntos, em um único acompanhamento que enxerga o seu corpo por inteiro.',
-              'Nutrition, training, massage therapy and physical assessment working together, in a single program that sees your body as a whole.'
+              'Avaliação física premium, treino e recovery em um único acompanhamento. Cada decisão é guiada por dados reais do seu corpo, não por achismo.',
+              'Premium physical assessment, training and recovery in a single program. Every decision is guided by real data from your body, not guesswork.'
             )}
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 20px', marginBottom: 28, maxWidth: 460 }}>
             {[
-              { ic: 'shield', t: tx('Nutrição', 'Nutrition') },
+              { ic: 'target', t: tx('Avaliação física premium', 'Premium assessment') },
               { ic: 'zap', t: tx('Treino', 'Training') },
-              { ic: 'heart', t: tx('Massoterapia', 'Massage therapy') },
-              { ic: 'target', t: tx('Avaliação física', 'Physical assessment') },
+              { ic: 'heart', t: tx('Recovery', 'Recovery') },
+              { ic: 'shield', t: tx('Alta performance', 'High performance') },
             ].map((p, i) => {
               const IC = Ic[p.ic];
               return (
