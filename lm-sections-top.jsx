@@ -397,6 +397,7 @@ const BEN_IMAGES = [
   'uploads/pasted-1787006837919-0.png',
   'uploads/pasted-1787006846039-0.png',
   'uploads/pasted-1787007194123-0.png',
+  'uploads/pasted-1787020447353-0.png',
   'uploads/pasted-1780335063687-0.png',
 ];
 
