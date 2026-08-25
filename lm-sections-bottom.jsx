@@ -384,6 +384,28 @@ const OfertaSection = () => {
           <ServiceCard block={SERVICE_BLOCKS().find((b) => b.id === 'apice')} />
         </div>
       )}
+      <div className="rv svc-custom" style={{ maxWidth: single ? 460 : 1040, margin: '18px auto 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap', background: 'var(--lm-black)', border: '1px dashed var(--lm-stone)', borderRadius: 18, padding: 'clamp(22px,3vw,30px)' }}>
+        <div style={{ flex: '1 1 320px', minWidth: 260 }}>
+          <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 'clamp(18px,2.2vw,22px)', color: 'var(--lm-pearl)', letterSpacing: '-0.01em', marginBottom: 8, lineHeight: 1.25 }}>
+            {tx('Nenhum plano encaixou no seu caso?', "None of the plans fit your case?")}
+          </h3>
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, lineHeight: 1.6, color: 'var(--t2)', maxWidth: 520 }}>
+            {tx('Alguns objetivos pedem um acompanhamento sob medida. Fale com o Time Ápice e montamos um serviço especializado para a sua necessidade.',
+                'Some goals call for a tailor-made program. Talk to Team Ápice and we will design a specialized service for your needs.')}
+          </p>
+        </div>
+        <Btn size="sm"
+          onClick={() => {
+            if (getLang() === 'en') { window.apiceCTA(); return; }
+            const msg = 'Oi, tenho interesse de saber sobre um serviço mais especializado';
+            window.open(`${WA_URL}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+          }}
+          style={{ flexShrink: 0, borderRadius: 999, padding: '13px 24px', fontSize: 13, background: 'transparent', color: 'var(--lm-pearl)', border: '1px solid var(--lm-stone)', boxShadow: 'none' }}>
+          <Ic.msg s={14} c="var(--lm-pearl)" />
+          {tx('Quero algo sob medida', 'I want something tailor-made')}
+          <Ic.arr s={14} c="var(--lm-pearl)" />
+        </Btn>
+      </div>
     </W>
   </section>
   );
