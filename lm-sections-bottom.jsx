@@ -123,6 +123,37 @@ const DepoimentosSection = () => {
     avatarPos: 'center',
     beforeAfter: [
       { before: 'uploads/pasted-1781049616310-0.png', after: 'uploads/pasted-1781049630401-0.png' },
+    ] },
+  { quote: tx('Decidi cuidar da minha saúde e encontrei no Davi alguém que acreditou no processo tanto quanto eu. O acompanhamento e o suporte foram essenciais: já são 22 kg eliminados. Indico de olhos fechados.',
+    'I decided to take care of my health and found in Davi someone who believed in the process as much as I did. The coaching and support were essential: 22 kg down so far. I recommend it with my eyes closed.'),
+    name: 'Maria Clara',
+    detail: tx('28 anos', 'Age 28'),
+    avatar: 'uploads/pasted-1789162011038-0.png',
+    avatarPos: 'center',
+    beforeAfter: [
+      { before: 'uploads/pasted-1789161687987-0.png', after: 'uploads/pasted-1789161715294-0.png' },
+      { before: 'uploads/pasted-1789161693724-0.png', after: 'uploads/pasted-1789161723609-0.png' },
+      { before: 'uploads/pasted-1789161698939-0.png', after: 'uploads/pasted-1789161730540-0.png' },
+      { before: 'uploads/pasted-1789161703845-0.png', after: 'uploads/pasted-1789161736232-0.png' },
+    ] },
+  { quote: tx('Eu estava acima do peso e insatisfeito com meu corpo. Procurei o Davi e levei os treinos a sério: o resultado foi excelente. Além da mudança física, ganhei disposição, confiança e qualidade de vida.',
+    'I was overweight and unhappy with my body. I reached out to Davi and took training seriously: the result was excellent. Beyond the physical change, I gained energy, confidence and quality of life.'),
+    name: 'Paulo',
+    detail: tx('47 anos', 'Age 47'),
+    avatar: 'uploads/pasted-1789404739697-0.png',
+    avatarPos: 'center 30%',
+    beforeAfter: [
+      { before: 'uploads/pasted-1789404489402-0.png', after: 'uploads/pasted-1789404494952-0.png' },
+    ] },
+  { quote: tx('A melhor consultoria que tem em Brasília. O resultado que tive foi em 3 meses de dieta e treino personalizado, e vi uma diferença enorme no meu corpo.',
+    'The best coaching in Brasília. I got my results in 3 months of personalized diet and training, and I saw a huge difference in my body.'),
+    name: 'Davi Gabriel',
+    detail: tx('23 anos', 'Age 23'),
+    avatar: 'uploads/pasted-1789405832749-0.png',
+    avatarPos: 'center 28%',
+    beforeAfter: [
+      { before: 'uploads/pasted-1789405610853-0.png', after: 'uploads/pasted-1789405642732-0.png' },
+      { before: 'uploads/pasted-1789405616706-0.png', after: 'uploads/pasted-1789405656100-0.png' },
     ] }];
 
   return (
